@@ -32,5 +32,10 @@ public class paintsController {
         return this.paintsService.deletePaintsByID(id);
     }
 
+    @GetMapping("/getPaintByID/{id}")
+    public paints getPaintByID(@PathVariable Long id){
+        return this.paintsService.findPaintByID(id);
+    }
+
 
 }
