@@ -37,7 +37,7 @@ public class paintsService {
         return this.repo.save(update);
     }
 
-    public Boolean deletePaints(Long id){
+    public Boolean deletePaintsByID(Long id){
         if(!this.repo.existsById(id)){
             throw new paintNotFoundException();
         }

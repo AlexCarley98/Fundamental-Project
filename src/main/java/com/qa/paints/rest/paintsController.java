@@ -2,9 +2,9 @@ package com.qa.paints.rest;
 
 import com.qa.paints.domain.paints;
 import com.qa.paints.service.paintsService;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,8 +18,19 @@ public class paintsController {
     }
 
     @GetMapping("/")
-    public List<paints> getAllpaints(){
+    public List<paints> getAllPaints(){
         return this.paintsService.findAllPaints();
     }
+
+    @PostMapping("/createPaint")
+    public paints createPaint(@RequestBody paints paints){
+        return this.paintsService.createPaints(paints);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public Boolean deletePaint(@PathVariable Long id){
+        return this.paintsService.deletePaintsByID(id);
+    }
+
 
 }
