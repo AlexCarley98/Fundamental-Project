@@ -21,7 +21,7 @@ public class paints {
     @JoinTable(
             name = "paints_schemes",
             joinColumns = @JoinColumn(name="paint_id"),
-            inverseJoinColumns = @JoinColumn(name = "course_id"))
+            inverseJoinColumns = @JoinColumn(name = "scheme_id"))
 
     Set<schemes> schemesIn;
 
