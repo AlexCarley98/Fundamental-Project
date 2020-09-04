@@ -15,7 +15,18 @@ public class schemes {
     @Column
     private String faction;
 
+    @ManyToMany(mappedBy = "schemesIn")
+    Set<paints> paintsIn;
+
     public schemes() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public schemes(String name) {
@@ -36,5 +47,13 @@ public class schemes {
 
     public void setFaction(String faction) {
         this.faction = faction;
+    }
+
+    public Set<paints> getPaintsIn() {
+        return paintsIn;
+    }
+
+    public void setPaintsIn(Set<paints> paintsIn) {
+        this.paintsIn = paintsIn;
     }
 }

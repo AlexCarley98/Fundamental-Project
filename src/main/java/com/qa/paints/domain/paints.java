@@ -22,7 +22,6 @@ public class paints {
             name = "paints_schemes",
             joinColumns = @JoinColumn(name="paint_id"),
             inverseJoinColumns = @JoinColumn(name = "scheme_id"))
-
     Set<schemes> schemesIn;
 
     public paints() {
@@ -64,5 +63,13 @@ public class paints {
 
     public void setStock(int stock) {
         this.stock = stock;
+    }
+
+    public Set<schemes> getSchemesIn() {
+        return schemesIn;
+    }
+
+    public void setSchemesIn(Set<schemes> schemesIn) {
+        this.schemesIn = schemesIn;
     }
 }
