@@ -20,7 +20,7 @@ public class schemesService {
         return this.repo.findAll();
     }
 
-    public schemes createPaints(schemes schemes){
+    public schemes createSchemes(schemes schemes){
         return this.repo.save(schemes);
     }
 
