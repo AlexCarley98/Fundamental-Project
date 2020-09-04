@@ -1,9 +1,7 @@
 package com.qa.paints.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class paints {
@@ -19,6 +17,13 @@ public class paints {
 
     @Column
     private int stock;
+    @ManyToMany
+    @JoinTable(
+            name = "paints_schemes",
+            joinColumns = @JoinColumn(name="paint_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id"))
+
+    Set<schemes> schemesIn;
 
     public paints() {
     }
