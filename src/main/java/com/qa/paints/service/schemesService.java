@@ -24,12 +24,12 @@ public class schemesService {
         return this.repo.save(schemes);
     }
 
-    public schemes findPaintByID(Long id){
+    public schemes findSchemeByID(Long id){
         return this.repo.findById(id).orElseThrow(schemeNotFoundException::new);
     }
 
     public schemes updateSchemes(Long id, schemes schemes){
-        schemes update = findPaintByID(id);
+        schemes update = findSchemeByID(id);
         update.setName(schemes.getName());
         update.setFaction(schemes.getFaction());
         return this.repo.save(update);

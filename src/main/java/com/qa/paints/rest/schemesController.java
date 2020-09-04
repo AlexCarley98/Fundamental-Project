@@ -23,26 +23,26 @@ public class schemesController {
     }
 
     @PostMapping("/createScheme")
-    public schemes createPaint(@RequestBody schemes schemes){
+    public schemes createScheme(@RequestBody schemes schemes){
         return this.schemesService.createSchemes(schemes);
     }
 
     @DeleteMapping("/deleteScheme/{id}")
-    public Boolean deletePaint(@PathVariable Long id){
+    public Boolean deleteScheme(@PathVariable Long id){
         return this.schemesService.deleteSchemesByID(id);
     }
 
     @GetMapping("/getSchemeByID/{id}")
-    public schemes getPaintByID(@PathVariable Long id){
-        return this.schemesService.findPaintByID(id);
+    public schemes getSchemeByID(@PathVariable Long id){
+        return this.schemesService.findSchemeByID(id);
     }
 
     @PutMapping("/updateScheme/{id}")
-    public schemes updatePaint(@PathVariable Long id, @RequestBody schemes schemes){
+    public schemes updateScheme(@PathVariable Long id, @RequestBody schemes schemes){
         return this.schemesService.updateSchemes(id, schemes);
     }
     @PutMapping("/updateSchemeWithParam")
-    public schemes updatePaintWithParam(@PathParam("id") Long id, @RequestBody schemes schemes){
+    public schemes updateSchemeWithParam(@PathParam("id") Long id, @RequestBody schemes schemes){
         //Pass value with ?id=x
         return this.schemesService.updateSchemes(id, schemes);
     }
