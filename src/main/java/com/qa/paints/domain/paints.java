@@ -1,9 +1,11 @@
 package com.qa.paints.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@JsonIgnoreProperties({"HibernateLazyInitializer","Handler","schemes"})
 public class paints {
     @Id
     @GeneratedValue
