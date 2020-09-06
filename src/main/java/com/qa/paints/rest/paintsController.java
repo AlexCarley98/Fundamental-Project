@@ -1,9 +1,11 @@
 package com.qa.paints.rest;
 
 import com.qa.paints.domain.paints;
+import com.qa.paints.dto.paintsDTO;
 import com.qa.paints.service.paintsService;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
@@ -19,33 +21,35 @@ public class paintsController {
     }
 
     @GetMapping("/")
-    public List<paints> getAllPaints(){
-        return this.paintsService.findAllPaints();
+    public ResponseEntity<List<paintsDTO>> getAllPaints(){
+        return ResponseEntity.ok(this.paintsService.readAllPaints());
     }
 
     @PostMapping("/createPaint")
-    public paints createPaint(@RequestBody paints paints){
-        return this.paintsService.createPaints(paints);
+    public ResponseEntity<paintsDTO> createPaint(@RequestBody paints paints){
+        return new ResponseEntity<paintsDTO>(this.paintsService.createPaints(paints), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
-    public Boolean deletePaint(@PathVariable Long id){
-        return this.paintsService.deletePaintsByID(id);
+    public ResponseEntity<?> deletePaints(@PathVariable Long id){
+        return this.paintsService.deletePaintsByID(id)
+                ? ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build()
+                : ResponseEntity.noContent().build();
     }
 
     @GetMapping("/getPaintByID/{id}")
-    public paints getPaintByID(@PathVariable Long id){
-        return this.paintsService.findPaintByID(id);
+    public ResponseEntity<paintsDTO> getPaintsById(@PathVariable Long id){
+        return ResponseEntity.ok(this.paintsService.findPaintByID(id));
     }
 
     @PutMapping("/updatePaint/{id}")
-    public paints updatePaint(@PathVariable Long id, @RequestBody paints paints){
-        return this.paintsService.updatePaints(id, paints);
+    public ResponseEntity<paintsDTO> updatePaints(@PathVariable Long id, @RequestBody paints paints){
+        return ResponseEntity.ok(this.paintsService.updatePaints(id, paints));
     }
     @PutMapping("/updatePaintWithParam")
-    public paints updatePaintWithParam(@PathParam("id") Long id, @RequestBody paints paints){
+    public ResponseEntity<paintsDTO> updatePaintWithParam(@PathParam("id") Long id, @RequestBody paints paints){
         //Pass value with ?id=x
-        return this.paintsService.updatePaints(id, paints);
+        return ResponseEntity.ok(this.paintsService.updatePaints(id, paints));
     }
 
 }
