@@ -19,4 +19,4 @@ This project has tasked me to create a CRUD application using the different meth
 * Application deployed to a cloud-based virtual machine on GCP
 
 ## ERD Dragram
-![egg](https://qa-courseware-images.s3.eu-west-2.amazonaws.com/markdown/links_images/000.jpeg)https://raw.githubusercontent.com/AlexCarley98/Fundamental-Project/master/Untitled%20Diagram.png)
+![egg](https://raw.githubusercontent.com/AlexCarley98/Fundamental-Project/master/Untitled%20Diagram.png)
