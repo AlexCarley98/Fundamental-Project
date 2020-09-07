@@ -1,4 +1,4 @@
-function displaySchemes(){
+function displaySchemes() {
     const req = new XMLHttpRequest();
     req.onreadystatechange = () => {
         // Example handle logic
@@ -44,3 +44,23 @@ function displaySchemes(){
     req.open("GET", "http://localhost:9090/getAllSchemes");
     req.send();
 }
+    function submitPaints() {
+        let elements = document.getElementById("paintsForm").elements;
+        let obj = {};
+        for (let i = 0; i < elements.length - 1; i++) {
+            let item = elements.item(i);
+            obj[item.name] = item.value;
+        }
+
+        const req = new XMLHttpRequest();
+        req.open("POST", "http://localhost:9090/createPaint");
+        req.onload = () => {
+            if (req.status === 200 && req.readyState === 4) {
+                console.log("Server Responded with: " + req.responseText);
+            } else {
+                console.log("Oops...");
+            }
+        };
+        req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        req.send(JSON.stringify({name: obj.name, colour: obj.colour, stock: Number.stock ,schemes: {id: Number(obj.id)}}));
+    }

@@ -34,8 +34,12 @@ public class paintsDTO {
             return colour;
         }
 
-        public void setDescription(String  colour) {
+        public void setColour(String  colour) {
             this.colour = colour;
         }
+
+        public int getStock(){return stock;}
+
+        public void setStock(int stock){this.stock = stock;}
 
     }
