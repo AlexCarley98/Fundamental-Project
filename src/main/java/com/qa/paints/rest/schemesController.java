@@ -1,11 +1,13 @@
 package com.qa.paints.rest;
 
 import com.qa.paints.domain.schemes;
+import com.qa.paints.dto.schemesDTO;
 import com.qa.paints.service.schemesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
@@ -18,13 +20,13 @@ public class schemesController {
     }
 
     @GetMapping("/getAllSchemes")
-    public List<schemes> getAllSchemes(){
-        return this.schemesService.findAllSchemes();
+    public ResponseEntity<List<schemesDTO>> getAllSchemes(){
+        return ResponseEntity.ok(this.schemesService.findAllSchemes());
     }
 
     @PostMapping("/createScheme")
-    public schemes createScheme(@RequestBody schemes schemes){
-        return this.schemesService.createSchemes(schemes);
+    public ResponseEntity<schemesDTO> createScheme(@RequestBody schemes schemes){
+        return new ResponseEntity<schemesDTO>(this.schemesService.createSchemes(schemes), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/deleteScheme/{id}")
@@ -33,18 +35,12 @@ public class schemesController {
     }
 
     @GetMapping("/getSchemeByID/{id}")
-    public schemes getSchemeByID(@PathVariable Long id){
-        return this.schemesService.findSchemeByID(id);
+    public ResponseEntity<schemesDTO> getSchemeByID(@PathVariable Long id){
+        return ResponseEntity.ok(this.schemesService.findSchemeByID(id));
     }
 
     @PutMapping("/updateScheme/{id}")
-    public schemes updateScheme(@PathVariable Long id, @RequestBody schemes schemes){
-        return this.schemesService.updateSchemes(id, schemes);
+    public ResponseEntity<schemesDTO> updateScheme(@PathVariable Long id, @RequestBody schemes schemes){
+        return ResponseEntity.ok(this.schemesService.updateSchemes(id, schemes));
     }
-    @PutMapping("/updateSchemeWithParam")
-    public schemes updateSchemeWithParam(@PathParam("id") Long id, @RequestBody schemes schemes){
-        //Pass value with ?id=x
-        return this.schemesService.updateSchemes(id, schemes);
-    }
-
 }
